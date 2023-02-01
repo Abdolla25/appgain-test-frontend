@@ -7,15 +7,21 @@ const App = () => {
   const [links, setLinks] = useState <any[]> ([])
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/shortlinks')
-       .then((res) => res.json())
-       .then((data) => {
-          console.log(data);
-          setLinks(data);
-       })
-       .catch((err) => {
-          console.log(err.message);
-       });
+    fetch('https://quiet-hollows-04464.herokuapp.com/api/shortlinks', {
+      mode: 'no-cors',
+      method: 'GET' 
+    })
+      .then(res => {
+        console.log(res)
+        return res.json()
+      })
+      .then((data) => {
+        console.log(data);
+        setLinks(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, []);
 
   return (
